@@ -5,7 +5,7 @@
 cd "`dirname $0`" || { echo "ERROR: Could not enter the ps2toolchain directory."; exit 1; }
 
 ## Set up the environment.
-export PS2DEV=/usr/local/ps2dev
+export PS2DEV=/usr/local/ps2dev_new
 export PS2SDK=$PS2DEV/ps2sdk
 export PATH=$PATH:$PS2DEV/bin
 export PATH=$PATH:$PS2DEV/ee/bin
