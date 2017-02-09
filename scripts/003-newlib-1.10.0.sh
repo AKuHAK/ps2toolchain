@@ -3,7 +3,7 @@
 
 NEWLIB_VERSION=1.10.0
 ## Download the source code.
-SOURCE=ftp://sourceware.org/pub/newlib/newlib-$NEWLIB_VERSION.tar.gz
+SOURCE=http://github.com/downloads/ps2dev/ps2toolchain/newlib-1.10.0.tar.gz
 wget --continue $SOURCE || { exit 1; }
 
 ## Unpack the source code.
