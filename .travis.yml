@@ -10,6 +10,7 @@ before_script:
  - export PS2DEV=~/ps2dev
  - export PS2SDK=${PS2DEV}/ps2sdk
  - export PATH=${PATH}:${PS2DEV}/bin:${PS2DEV}/ee/bin:${PS2DEV}/iop/bin:${PS2DEV}/dvp/bin:${PS2SDK}/bin
+ - export PS2MKFLAGS=--silent
 
 script:
 # - travis_wait 60 bash ./toolchain.sh > /tmp/PS2TOOLCHAIN.log 2>&1
