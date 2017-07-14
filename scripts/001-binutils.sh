@@ -42,8 +42,8 @@
   ## Create and enter the build directory.
   mkdir build-$TARG_NAME && cd build-$TARG_NAME || { exit 1; }
 
-  ## Configure the build.
-  ../configure --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" $TARG_XTRA_OPTS || { exit 1; }
+  ## configure the build.
+  ../configure --enable-silent-rules --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" $TARG_XTRA_OPTS || { exit 1; }
 
   ## Compile and install.
   make clean && make -j $PROC_NR && make install && make clean || { exit 1; }
