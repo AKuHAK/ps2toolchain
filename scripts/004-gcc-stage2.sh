@@ -44,4 +44,4 @@ mkdir build-$TARG_NAME-stage2 && cd build-$TARG_NAME-stage2 || { exit 1; }
 ../configure --enable-silent-rules --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" --enable-languages="c,c++" --disable-nls --disable-shared --disable-libssp --disable-libmudflap --disable-threads --disable-libgomp --disable-libquadmath --disable-target-libiberty --disable-target-zlib --without-ppl --without-cloog --with-headers=no --disable-libada --disable-libatomic --disable-multilib --with-headers="$PS2DEV/$TARG_NAME/$TARGET/include" $TARG_XTRA_OPTS || { exit 1; }
 
 ## Compile and install.
-make clean --silent && make --silent -j $PROC_NR && make install --silent && make clean --silent || { exit 1; }
+make "$PS2MKFLAGS" clean && make "$PS2MKFLAGS" -j $PROC_NR && make "$PS2MKFLAGS" install && make "$PS2MKFLAGS" clean || { exit 1; }

@@ -17,8 +17,8 @@ if [ -e ../../patches/newlib-$NEWLIB_VERSION-PS2.patch ]; then
 	cat ../../patches/newlib-$NEWLIB_VERSION-PS2.patch | patch -p1 || { exit 1; }
 fi
 
-## Determine the maximum number of processes that Make can work with.
-## MinGW's Make doesn't work properly with multi-core processors.
+## Determine the maximum number of processes that make can work with.
+## MinGW's make doesn't work properly with multi-core processors.
 OSVER=$(uname)
 if [ ${OSVER:0:10} == MINGW32_NT ]; then
 	PROC_NR=2
@@ -37,4 +37,4 @@ mkdir build-$TARG_NAME && cd build-$TARG_NAME || { exit 1; }
 ../configure --enable-silent-rules --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" || { exit 1; }
 
 ## Compile and install.
-make clean && make -j $PROC_NR && make install && make clean || { exit 1; }
+make "$PS2MKFLAGS" clean && make "$PS2MKFLAGS" -j $PROC_NR && make "$PS2MKFLAGS" install && make "$PS2MKFLAGS" clean || { exit 1; }

@@ -24,8 +24,8 @@ if [ -e ../../patches/gcc-$GCC_VERSION-PS2.patch ]; then
 	cat ../../patches/gcc-$GCC_VERSION-PS2.patch | patch -p1 || { exit 1; }
 fi
 
-## Determine the maximum number of processes that Make can work with.
-## MinGW's Make doesn't work properly with multi-core processors.
+## Determine the maximum number of processes that make can work with.
+## MinGW's make doesn't work properly with multi-core processors.
 OSVER=$(uname)
 if [ ${OSVER:0:10} == MINGW32_NT ]; then
 	PROC_NR=2
@@ -52,7 +52,7 @@ for ((i=0; i<${#target_names[@]}; i++)); do
 	../configure --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" --enable-languages="c" --disable-nls --disable-shared --disable-libssp --disable-libmudflap --disable-threads --disable-libgomp --disable-libquadmath --disable-target-libiberty --disable-target-zlib --without-ppl --without-cloog --with-headers=no --disable-libada --disable-libatomic --disable-multilib $TARG_XTRA_OPTS || { exit 1; }
 
 	## Compile and install.
-	make clean && make -j $PROC_NR && make install && make clean || { exit 1; }
+	make "$PS2MKFLAGS" clean && make "$PS2MKFLAGS" -j $PROC_NR && make "$PS2MKFLAGS" install && make "$PS2MKFLAGS" clean || { exit 1; }
 
 	## Exit the build directory.
 	cd .. || { exit 1; }

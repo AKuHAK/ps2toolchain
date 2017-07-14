@@ -12,4 +12,4 @@
  fi
 
  ## Build and install.
- make clean && make && make install && make clean || { exit 1; }
+ make "$PS2MKFLAGS" clean && make "$PS2MKFLAGS" && make "$PS2MKFLAGS" install && make "$PS2MKFLAGS" clean || { exit 1; }

@@ -15,8 +15,8 @@ else
 		git reset --hard origin/new_gcc || exit 1
 fi
 
-## Determine the maximum number of processes that Make can work with.
-## MinGW's Make doesn't work properly with multi-core processors.
+## Determine the maximum number of processes that make can work with.
+## MinGW's make doesn't work properly with multi-core processors.
 # OSVER=$(uname)
 # if [ ${OSVER:0:10} == MINGW32_NT ]; then
 # 	PROC_NR=2
@@ -27,7 +27,7 @@ fi
 # fi
 
 ## Build and install
-make clean && make && make install && make clean || { exit 1; }
+make "$PS2MKFLAGS" clean && make "$PS2MKFLAGS" && make "$PS2MKFLAGS" install && make "$PS2MKFLAGS" clean || { exit 1; }
 
 ## Replace newlib's crt0 with the one in ps2sdk.
 # ln -sf "$PS2SDK/ee/startup/crt0.o" "$PS2DEV/ee/lib/gcc-lib/ee/3.2.3/crt0.o" || { exit 1; }
