@@ -8,7 +8,7 @@ unset PS2SDKSRC
 
 ## Download the source code.
 if test ! -d "ps2sdk/.git"; then
-	git clone https://github.com/akuhak/ps2sdk && cd ps2sdk && git reset --hard origin/new_gcc && git checkout origin/new_gcc || exit 1
+	git clone https://github.com/akuhak/ps2sdk && cd ps2sdk && git checkout new_gcc || exit 1
 else
 	cd ps2sdk &&
 		git pull && git fetch origin &&
