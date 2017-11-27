@@ -28,14 +28,18 @@ PING_LOOP_PID=$!
 # My build is using maven, but you could build anything with this, E.g.
 # your_build_command_1 >> $BUILD_OUTPUT 2>&1
 # your_build_command_2 >> $BUILD_OUTPUT 2>&1
+echo "toolchain.sh 1 started"
 ./toolchain.sh 1 >> $BUILD_OUTPUT 2>&1
+echo "toolchain.sh 2 started"
 ./toolchain.sh 2 >> $BUILD_OUTPUT 2>&1
+echo "toolchain.sh 3 started"
 ./toolchain.sh 3 >> $BUILD_OUTPUT 2>&1
+echo "toolchain.sh 4 started"
 ./toolchain.sh 4 >> $BUILD_OUTPUT 2>&1
 
 # The build finished without returning an error so dump a tail of the output
 dump_output
-ls-l
+ls -l
 
 # nicely terminate the ping output loop
 kill $PING_LOOP_PID
