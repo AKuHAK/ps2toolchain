@@ -34,14 +34,14 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
 #RUN https://github.com/AKuHAK/ps2toolchain /toolchain \
 #    && cd /ps2toolchain && git checkout new_gcc \
 #    && ./toolchain.sh 1 \
-#RUN ./toolchain.sh 1 \
-#    && ./toolchain.sh 2 \
-#    && ./toolchain.sh 3 \
-#    && ./toolchain.sh 4 \
-#    && rm -rf \
-#        /ps2dev/test.tmp \
-#        /build \
-#        /var/lib/apt/lists/*
+RUN bash /toolchain.sh 1 \
+    && bash /toolchain.sh 2 \
+    && bash /toolchain.sh 3 \
+    && bash /toolchain.sh 4 \
+    && rm -rf \
+        /ps2dev/test.tmp \
+        /build \
+        /var/lib/apt/lists/*
 RUN ls -l \
     && ls -l /
 
