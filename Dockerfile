@@ -29,7 +29,7 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
         texinfo \
         libmpc-dev \
         libgmp-dev \
-        diffutils \
+        diffutils
 
 #RUN https://github.com/AKuHAK/ps2toolchain /toolchain \
 #    && cd /ps2toolchain && git checkout new_gcc \
