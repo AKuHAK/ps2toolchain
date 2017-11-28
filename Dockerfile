@@ -31,19 +31,18 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
         libgmp-dev \
         diffutils
 
-#RUN https://github.com/AKuHAK/ps2toolchain /toolchain \
-#    && cd /ps2toolchain && git checkout new_gcc \
-#    && ./toolchain.sh 1 \
-RUN bash /toolchain.sh 1 \
+RUN git clone https://github.com/AKuHAK/ps2toolchain -b new_gcc /toolchain \
+    && cd /toolchain \
+    && ./toolchain.sh 1 \
+#RUN bash /toolchain.sh 1 \
     && bash /toolchain.sh 2 \
     && bash /toolchain.sh 3 \
     && bash /toolchain.sh 4 \
     && rm -rf \
         /ps2dev/test.tmp \
+        /toolchain \
         /build \
         /var/lib/apt/lists/*
-RUN ls -l \
-    && ls -l /
 
 WORKDIR /src
 CMD ["/bin/bash"]
