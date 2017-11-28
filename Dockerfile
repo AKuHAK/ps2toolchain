@@ -34,10 +34,9 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
 RUN git clone https://github.com/AKuHAK/ps2toolchain -b new_gcc /toolchain \
     && cd /toolchain \
     && ./toolchain.sh 1 \
-#RUN bash /toolchain.sh 1 \
-    && bash /toolchain.sh 2 \
-    && bash /toolchain.sh 3 \
-    && bash /toolchain.sh 4 \
+    && ./toolchain.sh 2 \
+    && ./toolchain.sh 3 \
+    && ./toolchain.sh 4 \
     && rm -rf \
         /ps2dev/test.tmp \
         /toolchain \
