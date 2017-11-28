@@ -37,8 +37,6 @@ RUN ./toolchain.sh 1 \
     && ./toolchain.sh 2 \
     && ./toolchain.sh 3 \
     && ./toolchain.sh 4 \
-    && ./toolchain.sh 5 \
-    && rm -rf /ps2toolchain/build/*
     && rm -rf \
         /ps2dev/test.tmp \
         /build \
