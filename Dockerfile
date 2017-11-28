@@ -23,6 +23,7 @@ RUN export DEBIAN_FRONTEND="noninteractive" \
         wget \
         zip \
         zlib1g-dev \
+        coreutils \
  # next: packages that we need for newest gcc
         g++ \
         texinfo \
