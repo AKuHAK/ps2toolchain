@@ -1,10 +1,12 @@
+dist: xenial
+language: cpp
 sudo: required
 
 install:
  ## Dependencies
  #- sudo apt-get install -yqqq gcc-4.4
  - sudo apt-get install -yqqq patch wget make git libc6-dev zlib1g zlib1g-dev libucl1 libucl-dev
- - sudo apt-get install -yqqq gcc g++ libmpc-dev texinfo
+ - sudo apt-get install -yqqq cc g++ texinfo gawk pigz pv libmpfr-dev libgmp-dev libmpc-dev
 
 before_script:
  - export PS2DEV=~/ps2dev
@@ -12,6 +14,8 @@ before_script:
  - export PATH=${PATH}:${PS2DEV}/bin:${PS2DEV}/ee/bin:${PS2DEV}/iop/bin:${PS2DEV}/dvp/bin:${PS2SDK}/bin
 
 script:
-# - travis_wait 60 bash ./toolchain.sh > /tmp/PS2TOOLCHAIN.log 2>&1
-# - curl --upload-file /tmp/PS2TOOLCHAIN.log https://transfer.sh/PS2TOOLCHAIN${TRAVIS_BUILD_NUMBER}.log
- - bash ./travis.sh
+ - travis_wait 50 bash ./toolchain.sh 1
+ - travis_wait 50 bash ./toolchain.sh 2
+ - travis_wait 50 bash ./toolchain.sh 3
+ - travis_wait 50 bash ./toolchain.sh 4
+ - travis_wait 50 bash ./toolchain.sh 5
