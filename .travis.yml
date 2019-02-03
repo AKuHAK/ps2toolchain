@@ -10,6 +10,17 @@ addons:
 sudo: required
 language: cpp
 
+env:
+  - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=akuhak/ps2sdk PS2SDK_BRANCH=new_gcc
+  - BINUTILS_VERSION=2.25.1 GCC_VERSION=8.2.0 NEWLIB_VERSION=3.0.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test-1
+  - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test-1
+
+matrix:
+  # fast_finish: true
+  allow_failures:
+    - env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+
 before_script:
   - export PS2DEV=~/ps2dev
   - export PS2SDK=${PS2DEV}/ps2sdk
@@ -30,6 +41,6 @@ script:
 
 after_success:
   - cd $(PS2SDK) && make -C samples
-  - zip -r samples_$TRAVIS_COMMIT.zip samples
+  - cd $(PS2SDK) && zip -r samples_$TRAVIS_COMMIT.zip samples
   - curl --upload-file samples_$TRAVIS_COMMIT.zip https://transfer.sh/samples_$TRAVIS_COMMIT.zip | grep transfer
   

@@ -5,14 +5,16 @@
 
 # make sure ps2sdk's makefile does not use it
 unset PS2SDKSRC
+#PS2SDK_GITHUB=akuhak/ps2sdk
+#PS2SDK_BRANCH=new_gcc
 
 ## Download the source code.
 if test ! -d "ps2sdk/.git"; then
-	git clone https://github.com/akuhak/ps2sdk && cd ps2sdk && git reset --hard origin/new_gcc && git checkout origin/new_gcc || exit 1
+	git clone https://github.com/$PS2SDK_GITHUB -b $PS2SDK_BRANCH && cd ps2sdk || exit 1
 else
 	cd ps2sdk &&
 		git pull && git fetch origin &&
-		git reset --hard origin/new_gcc || exit 1
+		git reset --hard origin/$PS2SDK_BRANCH || exit 1
 fi
 
 ## Determine the maximum number of processes that Make can work with.

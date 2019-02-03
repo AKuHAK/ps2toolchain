@@ -1,15 +1,15 @@
 #!/bin/bash
-# newlib-2.5.0.sh by AKuHAK
+# newlib-3.0.0.sh by uyjulian
 # Based on newlib-1.10.0.sh by Dan Peori (danpeori@oopo.net)
 
-NEWLIB_VERSION=2.5.0
+#NEWLIB_VERSION=2.5.0
 ## Download the source code.
-SOURCE=http://sourceforge.net/projects/devkitpro/files/sources/newlib/newlib-$NEWLIB_VERSION.tar.gz
+SOURCE=http://mirrors.kernel.org/sourceware/newlib/newlib-$NEWLIB_VERSION.tar.gz
 wget --continue $SOURCE || { exit 1; }
 
 ## Unpack the source code.
 echo Decompressing newlib $NEWLIB_VERSION. Please wait.
-rm -Rf newlib-$NEWLIB_VERSION && tar xfz newlib-$NEWLIB_VERSION.tar.gz || { exit 1; }
+rm -Rf newlib-$NEWLIB_VERSION && pigz -dc newlib-$NEWLIB_VERSION.tar.gz | pv | tar xf - || { exit 1; }
 
 ## Enter the source directory and patch the source code.
 cd newlib-$NEWLIB_VERSION || { exit 1; }
@@ -34,7 +34,7 @@ TARGET="mips64r5900el-ps2-elf"
 mkdir build-$TARG_NAME && cd build-$TARG_NAME || { exit 1; }
 
 ## Configure the build.
-../configure --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" || { exit 1; }
+../configure --quiet --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" || { exit 1; }
 
 ## Compile and install.
-make clean && make -j $PROC_NR && make install && make clean || { exit 1; }
+make --quiet clean && make --quiet -j $PROC_NR && make --quiet install && make --quiet clean || { exit 1; }
