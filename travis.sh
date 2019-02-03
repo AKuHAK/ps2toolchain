@@ -1,45 +1,35 @@
-#!/bin/bash
-# Abort on Error
-set -e
+dist: xenial
+addons:
+  apt:
+    packages:
+      - texinfo patch wget make git 
+      - libc6-dev zlib1g zlib1g-dev libucl1 libucl-dev
+      - libmpc-dev libmpfr-dev libgmp-dev
+      - pigz pv
 
-export PING_SLEEP=30s
-export WORKDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export BUILD_OUTPUT=$WORKDIR/build.out
+sudo: required
+language: cpp
 
-touch $BUILD_OUTPUT
+before_script:
+  - export PS2DEV=~/ps2dev
+  - export PS2SDK=${PS2DEV}/ps2sdk
+  - export PATH=${PATH}:${PS2DEV}/bin:${PS2DEV}/ee/bin:${PS2DEV}/iop/bin:${PS2DEV}/dvp/bin:${PS2SDK}/bin
+  - echo $(nproc)
+  - gcc -v && g++ -v
 
-dump_output() {
-   echo Tailing the last 500 lines of output:
-   tail -500 $BUILD_OUTPUT  
-}
-error_handler() {
-  echo ERROR: An error was encountered with the build.
-  dump_output
-  exit 1
-}
-# If an error occurs, run our error handler to output a tail of the build
-trap 'error_handler' ERR
+script:
+# - travis_wait 60 bash ./toolchain.sh > /tmp/PS2TOOLCHAIN.log 2>&1
+# - curl --upload-file /tmp/PS2TOOLCHAIN.log https://transfer.sh/PS2TOOLCHAIN${TRAVIS_BUILD_NUMBER}.log
+  - bash ./toolchain.sh 1
+  - bash ./toolchain.sh 2
+  - travis_wait 50 bash ./toolchain.sh 3
+  - bash ./toolchain.sh 4
+  - travis_wait 50 bash ./toolchain.sh 5
+  - bash ./toolchain.sh 6
+  - bash ./toolchain.sh 7
 
-# Set up a repeating loop to send some output to Travis.
-
-bash -c "while true; do echo \$(date) - building ...; sleep $PING_SLEEP; done" &
-PING_LOOP_PID=$!
-
-# My build is using maven, but you could build anything with this, E.g.
-# your_build_command_1 >> $BUILD_OUTPUT 2>&1
-# your_build_command_2 >> $BUILD_OUTPUT 2>&1
-echo "toolchain.sh 1 started"
-./toolchain.sh 1 >> $BUILD_OUTPUT 2>&1
-echo "toolchain.sh 2 started"
-./toolchain.sh 2 >> $BUILD_OUTPUT 2>&1
-echo "toolchain.sh 3 started"
-./toolchain.sh 3 >> $BUILD_OUTPUT 2>&1
-echo "toolchain.sh 4 started"
-./toolchain.sh 4 >> $BUILD_OUTPUT 2>&1
-
-# The build finished without returning an error so dump a tail of the output
-dump_output
-ls -l
-
-# nicely terminate the ping output loop
-kill $PING_LOOP_PID
+after_success:
+  - cd $(PS2SDK) && make -C samples
+  - zip -r samples_$TRAVIS_COMMIT.zip samples
+  - curl --upload-file samples_$TRAVIS_COMMIT.zip https://transfer.sh/samples_$TRAVIS_COMMIT.zip | grep transfer
+  
