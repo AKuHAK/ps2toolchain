@@ -37,7 +37,6 @@ script:
   - bash ./toolchain.sh 4
   - travis_wait 50 bash ./toolchain.sh 5
   - bash ./toolchain.sh 6
-  - bash ./toolchain.sh 7
 
 after_success:
   - cd $(PS2SDK) && make --quiet -C samples
