@@ -5,7 +5,7 @@
 #NEWLIB_VERSION=2.5.0
 ## Download the source code.
 SOURCE=http://mirrors.kernel.org/sourceware/newlib/newlib-$NEWLIB_VERSION.tar.gz
-wget --continue $SOURCE || { exit 1; }
+wget --quiet --continue $SOURCE || { exit 1; }
 
 ## Unpack the source code.
 echo Decompressing newlib $NEWLIB_VERSION. Please wait.

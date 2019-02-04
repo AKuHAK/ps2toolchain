@@ -6,7 +6,7 @@
 # GCC_VERSION=6.3.0
 ## Download the source code.
 SOURCE=http://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
-wget --continue $SOURCE || { exit 1; }
+wget --quiet --continue $SOURCE || { exit 1; }
 
 ## Unpack the source code.
 echo Decompressing GCC $GCC_VERSION. Please wait.

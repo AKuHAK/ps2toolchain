@@ -29,7 +29,7 @@ fi
 # fi
 
 ## Build and install
-make clean && make && make install && make clean || { exit 1; }
+make --quiet clean && make --quiet install && make --quiet clean || { exit 1; }
 
 ## Replace newlib's crt0 with the one in ps2sdk.
 # ln -sf "$PS2SDK/ee/startup/crt0.o" "$PS2DEV/ee/lib/gcc-lib/ee/3.2.3/crt0.o" || { exit 1; }

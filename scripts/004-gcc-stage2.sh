@@ -8,7 +8,7 @@
 SOURCE=http://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 
 if [ ! -d gcc-$GCC_VERSION ]; then
-	wget --continue $SOURCE || { exit 1; }
+	wget --quiet --continue $SOURCE || { exit 1; }
 
 	## Unpack the source code.
 	echo Decompressing GCC $GCC_VERSION. Please wait.

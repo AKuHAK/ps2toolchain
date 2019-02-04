@@ -5,7 +5,7 @@
 #BINUTILS_VERSION=2.25.1
 ## Download the source code.
 SOURCE=http://ftpmirror.gnu.org/binutils/binutils-$BINUTILS_VERSION.tar.gz
-wget --continue $SOURCE || { exit 1; }
+wget --quiet --continue $SOURCE || { exit 1; }
 
 ## Unpack the source code.
 echo Decompressing Binutils $BINUTILS_VERSION. Please wait.

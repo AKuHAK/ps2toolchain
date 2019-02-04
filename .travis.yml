@@ -40,7 +40,7 @@ script:
   - bash ./toolchain.sh 7
 
 after_success:
-  - cd $(PS2SDK) && make -C samples
+  - cd $(PS2SDK) && make --quiet -C samples
   - cd $(PS2SDK) && zip -r samples_$TRAVIS_COMMIT.zip samples
   - curl --upload-file samples_$TRAVIS_COMMIT.zip https://transfer.sh/samples_$TRAVIS_COMMIT.zip | grep transfer
   
