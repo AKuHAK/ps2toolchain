@@ -46,7 +46,7 @@ for ((i=0; i<${#target_names[@]}; i++)); do
 	../configure --quiet --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" $TARG_XTRA_OPTS || { exit 1; }
 
 	## Compile and install.
-	make --quiet clean && make --quiet -j $PROC_NR && make --quiet install && make --quiet clean || { exit 1; }
+	make --quiet -j $PROC_NR && make --quiet install || { exit 1; }
 
 	## Exit the build directory.
 	cd .. || { exit 1; }

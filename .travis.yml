@@ -12,6 +12,7 @@ language: cpp
 
 env:
   - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=akuhak/ps2sdk PS2SDK_BRANCH=new_gcc
+  - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test1
   - BINUTILS_VERSION=2.25.1 GCC_VERSION=8.2.0 NEWLIB_VERSION=3.0.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test1
   - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test1
 
@@ -26,7 +27,7 @@ before_script:
   - export PS2SDK=${PS2DEV}/ps2sdk
   - export PATH=${PATH}:${PS2DEV}/bin:${PS2DEV}/ee/bin:${PS2DEV}/iop/bin:${PS2DEV}/dvp/bin:${PS2SDK}/bin
   - echo $(nproc)
-  - gcc -v && g++ -v
+  - gcc -dumpversion && g++ -dumpversion
 
 script:
 # - travis_wait 60 bash ./toolchain.sh > /tmp/PS2TOOLCHAIN.log 2>&1

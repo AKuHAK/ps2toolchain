@@ -37,4 +37,4 @@ mkdir build-$TARG_NAME && cd build-$TARG_NAME || { exit 1; }
 ../configure --quiet --prefix="$PS2DEV/$TARG_NAME" --target="$TARGET" || { exit 1; }
 
 ## Compile and install.
-make --quiet clean && make --quiet -j $PROC_NR && make --quiet install && make --quiet clean || { exit 1; }
+make --quiet -j $PROC_NR && make --quiet install || { exit 1; }
