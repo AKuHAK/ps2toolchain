@@ -8,6 +8,8 @@ ENV PATH   $PATH:$PS2DEV/bin:$PS2DEV/ee/bin:$PS2DEV/iop/bin:$PS2DEV/dvp/bin:$PS2
 ENV BINUTILS_VERSION 2.25.1
 ENV GCC_VERSION 6.3.0
 ENV NEWLIB_VERSION 2.5.0
+ENV PS2SDK_GITHUB ps2homebrew/ps2sdk
+ENV PS2SDK_BRANCH test1
 
 COPY . /toolchain
 
@@ -23,7 +25,7 @@ RUN apt-get update &&\
   ./toolchain.sh 5 && \
   ./toolchain.sh 6 && \
   rm -rf \
-        /ps2dev/test.tmp \
+        /usr/local/ps2dev/test.tmp \
         /toolchain/build \
         /var/lib/apt/lists/* \
         /tmp/*
