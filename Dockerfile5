@@ -23,9 +23,9 @@ RUN apt-get update &&\
   ./toolchain.sh 3 && \
   ./toolchain.sh 4 && \
   ./toolchain.sh 5 && \
-  ./toolchain.sh 6 && \
+  ./toolchain.sh 5 && \
   rm -rf \
-        /usr/local/ps2dev/test.tmp \
+        /ps2dev/test.tmp \
         /toolchain/build \
         /var/lib/apt/lists/* \
         /tmp/*
