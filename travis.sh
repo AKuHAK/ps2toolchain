@@ -21,12 +21,11 @@ script:
 # - travis_wait 60 bash ./toolchain.sh > /tmp/PS2TOOLCHAIN.log 2>&1
 # - curl --upload-file /tmp/PS2TOOLCHAIN.log https://transfer.sh/PS2TOOLCHAIN${TRAVIS_BUILD_NUMBER}.log
   - bash ./toolchain.sh 1
-  - bash ./toolchain.sh 2
-  - travis_wait 50 bash ./toolchain.sh 3
-  - bash ./toolchain.sh 4
-  - travis_wait 50 bash ./toolchain.sh 5
+  - travis_wait 50 bash ./toolchain.sh 2
+  - ./toolchain.sh 3
+  - travis_wait 50 bash ./toolchain.sh 4
+  - bash ./toolchain.sh 5
   - bash ./toolchain.sh 6
-  - bash ./toolchain.sh 7
 
 after_success:
   - cd $(PS2SDK) && make -C samples

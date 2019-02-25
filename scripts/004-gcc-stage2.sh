@@ -28,7 +28,7 @@ if [ ! -d gcc-$GCC_VERSION ]; then
 
 	## isl 0.20 broke GCC compilation: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86724
 	## Remove once a new version is released.
-	cat ../../patches/gcc-isl.patch | patch -p1 || { exit 1; }
+	## cat ../../patches/gcc-isl.patch | patch -p1 || { exit 1; }
 	cd ..
 fi
 

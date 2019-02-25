@@ -15,6 +15,8 @@ rm -Rf binutils-$BINUTILS_VERSION && pigz -dc binutils-$BINUTILS_VERSION.tar.gz 
 cd binutils-$BINUTILS_VERSION || { exit 1; }
 if [ -e ../../patches/binutils-$BINUTILS_VERSION-PS2.patch ]; then
 	cat ../../patches/binutils-$BINUTILS_VERSION-PS2.patch | patch -p1 || { exit 1; }
+elif
+	cat ../../patches/binutils-PS2.patch | patch -f -p1 || { exit 1; }
 fi
 
 ## Determine the maximum number of processes that Make can work with.

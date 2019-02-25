@@ -26,7 +26,7 @@ fi
 
 ## isl 0.20 broke GCC compilation: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=86724
 ## Remove once a new version is released.
-cat ../../patches/gcc-isl.patch | patch -p1 || { exit 1; }
+## cat ../../patches/gcc-isl.patch | patch -p1 || { exit 1; }
 
 ## Determine the maximum number of processes that Make can work with.
 ## MinGW's Make doesn't work properly with multi-core processors.
