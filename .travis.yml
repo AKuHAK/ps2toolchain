@@ -11,16 +11,14 @@ sudo: required
 language: cpp
 
 env:
-  - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=akuhak/ps2sdk PS2SDK_BRANCH=new_gcc
-  - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test1
+  - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.5.0 NEWLIB_VERSION=3.0.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test1
   - BINUTILS_VERSION=2.25.1 GCC_VERSION=8.2.0 NEWLIB_VERSION=3.0.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test1
-  - BINUTILS_VERSION=2.25.1 GCC_VERSION=6.3.0 NEWLIB_VERSION=2.5.0 PS2SDK_GITHUB=ps2homebrew/ps2sdk PS2SDK_BRANCH=test1
 
 matrix:
   # fast_finish: true
-  allow_failures:
-    - env:
-        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+  # allow_failures:
+  #   - env:
+  #       - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
 
 before_script:
   - export PS2DEV=~/ps2dev

@@ -5,6 +5,11 @@ LABEL authors="akuhak@gmail.com"
 ENV PS2DEV /usr/local/ps2dev
 ENV PS2SDK $PS2DEV/ps2sdk
 ENV PATH   $PATH:$PS2DEV/bin:$PS2DEV/ee/bin:$PS2DEV/iop/bin:$PS2DEV/dvp/bin:$PS2SDK/bin
+ENV BINUTILS_VERSION 2.25.1
+ENV GCC_VERSION 6.5.0
+ENV NEWLIB_VERSION 2.5.0
+ENV PS2SDK_GITHUB ps2homebrew/ps2sdk
+ENV PS2SDK_BRANCH test1
 
 COPY . /toolchain
 

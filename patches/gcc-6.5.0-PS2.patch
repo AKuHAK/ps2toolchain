@@ -1,0 +1,77 @@
+diff -burN gcc-6.3.0.orig/config.sub gcc-6.3.0/config.sub
+# patch by SP193 and uyjulian
+--- gcc-6.3.0.orig/config.sub	2016-08-31 03:49:03.000000000 -0500
++++ gcc-6.3.0/config.sub	2017-01-07 14:05:58.000000000 -0600
+@@ -770,6 +770,10 @@
+ 		basic_machine=i386-unknown
+ 		os=-vsta
+ 		;;
++	iop)
++		basic_machine=mipsel-scei
++		os=-irx
++		;;
+ 	iris | iris4d)
+ 		basic_machine=mips-sgi
+ 		case $os in
+@@ -1399,7 +1403,8 @@
+ 	      | -morphos* | -superux* | -rtmk* | -rtmk-nova* | -windiss* \
+ 	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei* | -dragonfly* \
+ 	      | -skyos* | -haiku* | -rdos* | -toppers* | -drops* | -es* \
+-	      | -onefs* | -tirtos* | -phoenix*)
++	      | -onefs* | -tirtos* | -phoenix* \
++       | -irx*)
+ 	# Remember, each alternative MUST END IN *, to match a version number.
+ 		;;
+ 	-qnx*)
+diff -burN gcc-6.3.0.orig/configure gcc-6.3.0/configure
+--- gcc-6.3.0.orig/configure	2016-03-17 17:54:19.000000000 -0500
++++ gcc-6.3.0/configure	2017-01-07 14:05:16.000000000 -0600
+@@ -3430,6 +3430,8 @@
+     ;;
+   mips*-*-linux*)
+     ;;
++  mipsel-*-irx*)
++    ;;
+   powerpc*-*-linux*)
+     ;;
+   powerpc-*-darwin*)
+diff -burN gcc-6.3.0.orig/configure.ac gcc-6.3.0/configure.ac
+--- gcc-6.3.0.orig/configure.ac	2016-03-17 17:54:19.000000000 -0500
++++ gcc-6.3.0/configure.ac	2017-01-07 14:05:16.000000000 -0600
+@@ -766,6 +766,8 @@
+     ;;
+   mips*-*-linux*)
+     ;;
++  mipsel-*-irx*)
++    ;;
+   powerpc*-*-linux*)
+     ;;
+   powerpc-*-darwin*)
+diff -burN gcc-6.3.0.orig/gcc/config.gcc gcc-6.3.0/gcc/config.gcc
+--- gcc-6.3.0.orig/gcc/config.gcc	2016-11-07 15:38:43.000000000 -0600
++++ gcc-6.3.0/gcc/config.gcc	2017-01-07 14:05:16.000000000 -0600
+@@ -2218,6 +2218,11 @@
+ 	tmake_file="mips/t-elf"
+ 	tm_defines="${tm_defines} MIPS_ISA_DEFAULT=3 MIPS_ABI_DEFAULT=ABI_N32"
+ 	;;
++mipsel-*-irx*)
++	tm_file="dbxelf.h elfos.h newlib-stdint.h ${tm_file} mips/elf.h"
++	tmake_file="mips/t-elf mips/dbx.h"
++	target_cpu_default=MASK_SOFT_FLOAT_ABI
++	;;
+ mips64-*-elf* | mips64el-*-elf*)
+ 	tm_file="elfos.h newlib-stdint.h ${tm_file} mips/elf.h"
+ 	tmake_file="mips/t-elf"
+diff -burN gcc-6.3.0.orig/libgcc/config.host gcc-6.3.0/libgcc/config.host
+--- gcc-6.3.0.orig/libgcc/config.host	2016-11-18 21:03:55.000000000 -0600
++++ gcc-6.3.0/libgcc/config.host	2017-01-07 14:05:16.000000000 -0600
+@@ -902,6 +902,9 @@
+ 	tmake_file="$tmake_file mips/t-elf mips/t-crtstuff mips/t-mips16"
+ 	extra_parts="$extra_parts crti.o crtn.o"
+ 	;;
++mipsel-*-irx)
++	tmake_file="$tmake_file mips/t-elf"
++	;;
+ mipsr5900-*-elf* | mipsr5900el-*-elf*)
+ 	tmake_file="$tmake_file mips/t-elf mips/t-crtstuff"
+ 	extra_parts="$extra_parts crti.o crtn.o"
