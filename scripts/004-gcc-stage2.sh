@@ -1,9 +1,9 @@
 #!/bin/bash
-# gcc-8.2.0-stage2.sh by uyjulian
+# gcc-6.5.0-stage2.sh by uyjulian
 # Based on gcc-3.2.3-stage2.sh by uyjulian
 # Based on gcc-3.2.2-stage2.sh by Dan Peori (danpeori@oopo.net)
 
-#GCC_VERSION=8.2.0
+#GCC_VERSION=6.5.0
 ## Download the source code.
 SOURCE=http://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 

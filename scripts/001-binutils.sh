@@ -1,6 +1,9 @@
 #!/bin/bash
-# binutils-2.25.1.sh by uyjulian
-# Based on binutils-2.14.sh by Dan Peori (danpeori@oopo.net)
+# binutils-2.25.1.sh by Julian Uy (uyjulian@gmail.com)
+# Based on binutils-2.25.1.sh by SP193 (ysai187@yahoo.com)
+# Based on binutils-2.14.sh by Naomi Peori (naomi@peori.ca)
+# There is poor support for the "dvp" because I never worked with it
+# and don't actually understand why the old changes were necessary.
 
 #BINUTILS_VERSION=2.25.1
 ## Download the source code.

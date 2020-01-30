@@ -1,9 +1,10 @@
 #!/bin/bash
-# gcc-stage1.sh by uyjulian
+# gcc-6.5.0-stage1.sh by Julian Uy (uyjulian@gmail.com)
+# Based on gcc-5.3.0-stage1.sh by SP193 (ysai187@yahoo.com)
 # Based on gcc-3.2.3-stage1.sh by AKuHAK
-# Based on gcc-3.2.2-stage1.sh by Dan Peori (danpeori@oopo.net)
+# Based on gcc-3.2.2-stage1.sh by Naomi Peori (naomi@peori.ca)
 
-# GCC_VERSION=6.3.0
+# GCC_VERSION=6.5.0
 ## Download the source code.
 SOURCE=http://ftpmirror.gnu.org/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.gz
 wget --quiet --continue $SOURCE || { exit 1; }
